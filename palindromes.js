@@ -17,24 +17,41 @@ const is_palindrome = str => {
   // see if the two variables === 
 
   str = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
-  
-  for (let i=0; i<str.length; i++) {
+
+  /******* THIS VERSION CHECKS THE FIRST HALF OF THE STRING VS THE TOP HALF OF THE STACK(top half of stack = 2nd half of string) *******/
+  for (let i = 0; i < str.length; i++) {
     stack.push(str[i]);
   }
-  
-  let stackToString = '';
 
-  for (let i = 0; i < str.length; i++) {
-    stackToString += stack.pop();
+  for (let i = 0; i < str.length/2; i++) {
+    if (str[i] !== stack.pop()) { // if the first letter in the string != the top letter in the stack
+      return false; 
+      // as soon as you find one set of letter's that don't match, the string is not a palindrome
+    }
   }
 
-  return str === stackToString;
+  return true; 
+  // if we make it through the first half of the str w/o hitting a false, the str is a palindrome
+
+
+
+  /******* THIS VERSION CHECKS THE ENTIRE STRING VS THE ENTIRE STACK *******/
+  // for (let i=0; i<str.length; i++) {
+  //   stack.push(str[i]);
+  // }
+
+  // let stackToString = '';
+
+  // for (let i=0; i<str.length; i++) {
+  //   stackToString += stack.pop();
+  // }
+
+  // return str === stackToString;
 
 };
 
-// console.log(JSON.stringify(is_palindrome('hello')));
+console.log(JSON.stringify(is_palindrome('hello')));
 
-console.log(JSON.stringify(is_palindrome('dad')));
+// console.log(JSON.stringify(is_palindrome('dad')));
 console.log(JSON.stringify(is_palindrome('A man, a plan, a canal: Panama')));
-console.log(JSON.stringify(is_palindrome('1001')));
-console.log(JSON.stringify(is_palindrome('Tauhida')));
+// console.log(JSON.stringify(is_palindrome('1001')));
