@@ -56,21 +56,26 @@ const parser = str => {
 
   const stack = new Stack();
 
-  let brackets = {
+  const brackets = {
     '(': ')',
     '[': ']',
     '{': '}'
   };
 
   const keys = Object.keys(brackets); // keys: [ '(', '[', '{' ]
-  let values = Object.values(brackets); // values: [ ')', ']', '}' ]
+  const values = Object.values(brackets); // values: [ ')', ']', '}' ]
   
   for (let i = 0; i < str.length; i++) {
     if (keys.includes(str[i])) {
       stack.push(str[i]);
     }
     else if (values.includes(str[i])) {
-      stack.pop();
+      if (keys.indexOf(stack.top.data) === values.indexOf(str[i]) ) {
+        stack.pop();
+      }
+      else {
+        // throw error that this bracket is our of order
+      }
     }
     // if the i is in values, but stack.top is NOT it's match... do this
   }
@@ -79,7 +84,7 @@ const parser = str => {
 
 };
 
-console.log('GOOD:', JSON.stringify(parser('()[]{}')));
+console.log('GOOD:', JSON.stringify(parser('[](){}')));
 
 // console.log('GOOD:', JSON.stringify(parser('()[]{}')));
 // console.log('BAD:', JSON.stringify(parser('([}{)]')));
