@@ -70,21 +70,23 @@ const parser = str => {
       stack.push(str[i]);
     }
     else if (values.includes(str[i])) {
-      if (keys.indexOf(stack.top.data) === values.indexOf(str[i]) ) {
+      if (stack.top !== null && keys.indexOf(stack.top.data) === values.indexOf(str[i])) {
         stack.pop();
       }
+      else if (stack.top === null) {
+        return `There is an extra '${str[i]}' bracket in this string!`;
+      }
       else {
-        // throw error that this bracket is our of order
+        return `'${stack.top.data}' does not match '${str[i]}'`;
       }
     }
-    // if the i is in values, but stack.top is NOT it's match... do this
   }
 
-  return stack;
+  return stack.top ? 'Something has gone wrong...' : 'All brackets are accounted for!';
 
 };
 
-console.log('GOOD:', JSON.stringify(parser('[](){}')));
 
-// console.log('GOOD:', JSON.stringify(parser('()[]{}')));
-// console.log('BAD:', JSON.stringify(parser('([}{)]')));
+console.log('GOOD:', JSON.stringify(parser('()[]{}')));
+console.log('EXTRA:', JSON.stringify(parser('[](){})')));
+console.log('BAD:', JSON.stringify(parser('(]{)[}')));
