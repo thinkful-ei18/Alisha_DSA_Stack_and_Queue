@@ -6,8 +6,6 @@ const Stack = require('./Stack');
 A stack can be used to ensure that an arithmetic expression has balanced parentheses. Write a function that takes an arithmetic expression as an argument and returns the position in the expression where a parenthesis is missing or incorrect.
 
 For version 1, the parentheses you need to consider are ( and ). Finding a closed parenthesis without an open parenthesis is an error (report the location of the close); reaching the end of the string while still "holding" an open parenthesis is also an error (report the location of the open).
-
-Extension extension exercise: Also recognize two types of quote character: "" and ''. Inside quotes, brackets aren't counted at all - in fact, nothing is counted until you reach the corresponding close quote.
 */
 
 const parentheses = parens => {
@@ -34,16 +32,14 @@ const parentheses = parens => {
 
 };
 
-// console.log('equal:', JSON.stringify(parentheses('(3+5)'))); // version 1, equal parens
-// console.log('**(:', JSON.stringify(parentheses('(()'))); // version 1, 1 more open parens
-// console.log('**):', JSON.stringify(parentheses('())'))); // version 1, 1 more closed parens
-
-
+// console.log('equal:', JSON.stringify(parentheses('(3+5)'))); // equal parens
+// console.log('**(:', JSON.stringify(parentheses('(()'))); // 1 more open parens
+// console.log('**):', JSON.stringify(parentheses('())'))); // 1 more closed parens
 
 
 
 /* =============================
-  EXTENSION EXERCISE
+   EXTENSION EXERCISE
 
 Extension exercise: Recognize three pairs of brackets: (), [], and {}. These must be correctly nested; "([)]" is incorrect, and should report an error at the ), stating that you were expecting a ] but found a ). If this is starting to look and sound very familiar, congratulations - you're beginning to write a simple language parser!
 ============================= */
@@ -90,3 +86,20 @@ const parser = str => {
 console.log('GOOD:', JSON.stringify(parser('()[]{}')));
 console.log('EXTRA:', JSON.stringify(parser('[](){})')));
 console.log('BAD:', JSON.stringify(parser('(]{)[}')));
+
+
+
+/* =============================
+   EXTENSION EXTENSION EXERCISE
+
+Also recognize two types of quote character: "" and ''. Inside quotes, brackets aren't counted at all - in fact, nothing is counted until you reach the corresponding close quote.
+============================= */
+
+const extremeParser = str => {
+  const stack = new Stack();
+
+
+
+};
+
+console.log('GOOD:', JSON.stringify(extremeParser('()\'[\']{}')));
