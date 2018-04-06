@@ -28,7 +28,7 @@ class Stack {
 
   pop() {
 
-    if (!this.top) throw new Error('This stack is empty'); // if the stack is empty, throw this error
+    // if (!this.top) throw new Error('This stack is empty'); // if the stack is empty, throw this error
     
     const removedNode = this.top; // find the top of the stack
     this.top = removedNode.next; // set this.top to be the removedNode that's 2nd to the top
