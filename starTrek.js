@@ -16,7 +16,11 @@ const starTrek = () => {
 
   // return supplementalFunctions.peek(stack);
  
-  // return supplementalFunctions.display(stack);
+  stack.pop();
+  stack.pop();
+  
+  return supplementalFunctions.display(stack);
+
 };
 
 
