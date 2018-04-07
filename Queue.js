@@ -64,6 +64,7 @@ class Queue {
     // if there are multiple items in queue, make this.first point to the 2nd item in the list && return the item
     removedNode = this.first;
     this.first = this.first.next; 
+    this.first.prev = null;
     return removedNode.value;
 
   }
