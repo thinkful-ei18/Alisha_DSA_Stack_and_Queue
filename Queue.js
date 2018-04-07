@@ -7,8 +7,8 @@ const Node = require('./QueueNode');
 
 class Queue {
   constructor() {
-    this.first = null; // farthest left
-    this.last = null; // farthest right
+    this.head = null; // farthest left
+    this.tail = null; // farthest right
   }
 
   /* =============================
@@ -20,22 +20,22 @@ class Queue {
     const node = new Node(data);
 
     // if the queue is empty 
-    if (this.first === null) { 
-      this.first = node; 
+    if (this.head === null) { 
+      this.head = node; 
     }
 
     // if there is something in the queue...
-    if (this.first.next === null) {
-      this.first.next = node;
-      node.prev = this.first;
+    if (this.head.next === null) {
+      this.head.next = node;
+      node.prev = this.head;
     } 
     else {
-      this.last.next = node;
-      node.prev = this.last; 
+      this.tail.next = node;
+      node.prev = this.tail; 
     }
 
-    // no matter what, the new node will become this.last
-    this.last = node;
+    // no matter what, the new node will become this.tail
+    this.tail = node;
 
   }
 
@@ -44,29 +44,28 @@ class Queue {
   REMOVE
   ============================= */
 
-  dequeue() { // no need for an arg, it will only pull from this.first
+  dequeue() { // no need for an arg, it will only pull from this.head
     
     let removedNode;
 
-    // if the queue is empty, exit the function
-    if (this.first === null) {
+    // if the queue is empty
+    if (this.head === null) {
       return;
     }
 
-    // if there's only one item in the queue, set first/last back to null and return that item 
-    if (this.first.next === null) {
-      removedNode = this.first;
-      this.first = null;
-      this.last = null;
+    // if there's only one item in the queue
+    if (this.head.next === null) {
+      removedNode = this.head;
+      this.head = null;
+      this.tail = null;
       return removedNode.value;
     }
 
-    // if there are multiple items in queue, make this.first point to the 2nd item in the list && return the item
-    removedNode = this.first;
-    this.first = this.first.next; 
-    this.first.prev = null;
+    // if there are multiple items in queue
+    removedNode = this.head;
+    this.head = this.head.next; 
+    this.head.prev = null;
     return removedNode.value;
-
   }
 
 }
