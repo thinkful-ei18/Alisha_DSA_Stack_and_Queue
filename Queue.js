@@ -21,13 +21,20 @@ class Queue {
 
     // if the queue is empty 
     if (this.first === null) { 
-      // there's only one node so it's the first AND the last in the queue
       this.first = node; 
-      this.last = node; 
     }
 
-    // if there is at least one item in the queue...
-    node.prev = this.last; 
+    // if there is something in the queue...
+    if (this.first.next === null) {
+      this.first.next = node;
+      node.prev = this.first;
+    } 
+    else {
+      this.last.next = node;
+      node.prev = this.last; 
+    }
+
+    // no matter what, the new node will become this.last
     this.last = node;
 
   }
@@ -62,3 +69,5 @@ class Queue {
   }
 
 }
+
+module.exports = Queue;
