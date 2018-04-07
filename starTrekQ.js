@@ -1,6 +1,7 @@
 'use strict';
 
 const Queue = require('./Queue');
+const { peek, display } = require('./supplementalQFunctions');
 
 
 const starTrekQ = () => {
@@ -12,7 +13,12 @@ const starTrekQ = () => {
   queue.enqueue('Sulu');
   queue.enqueue('Checkov');
 
-  return queue;
+  // return peek(queue);
+
+  queue.dequeue('Kirk');
+  queue.dequeue('Spock');
+
+  return display(queue);
 
 };
 
